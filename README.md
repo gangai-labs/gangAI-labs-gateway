@@ -558,11 +558,12 @@ timeline
     section Phase 2 - Complete (Redis Optimized)
         Dynamic Routing : Hot-reload APIs
         Admin commands : see / usage.
-        Rate Limiting : Per user/endpoint
+
     section Phase 3 - In Progress
         SSE Support : Server-sent events
         Redis Cluster : Full HA mode
         50k User Benchmarks : Proven scale
+        Rate Limiting : Per user/endpoint
        
     section Phase 4 - Planned
         Observability : Prometheus/Grafana

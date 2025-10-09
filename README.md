@@ -600,7 +600,7 @@ MIT License - See [LICENSE.md](LICENSE.md) for details.
 
 ## 🤝 Contributing
 
-Fork, branch, commit, PR—let's scale this beast!
+Fork, branch, commit!
 
 1. `git checkout -b feature/scale-to-100k`
 2. `git commit -m 'Add Redis cluster support'`

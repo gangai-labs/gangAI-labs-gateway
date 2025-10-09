@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+venv/
+.env
+.python-version
+
+# PyCharm / IDE
+.idea/
+
+# Logs
+logs/
+
+# Docker / lock files
+uv.lock
+*.log
+
+# OS
+.DS_Store
+

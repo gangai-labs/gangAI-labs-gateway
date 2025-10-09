@@ -1,0 +1,118 @@
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - gateway1
+      - gateway2
+      - gateway3
+      - gateway4
+      - gateway5
+      - gateway6
+      - gateway7
+      - gateway8
+      - gateway9
+      - gateway10
+
+    # raise limits so nginx can open many sockets
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    sysctls:
+      net.core.somaxconn: 65535
+      net.ipv4.ip_local_port_range: "1024 65535"
+      net.ipv4.tcp_tw_reuse: 1
+
+  redis:
+    image: redis:7-alpine
+    command: >
+      redis-server
+      --maxclients 50000
+      --tcp-keepalive 60
+      --timeout 0
+    volumes:
+      - redis_data:/data
+
+  gateway1:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+  gateway2:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+  gateway3:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+  gateway4:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+  gateway5:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+  gateway6:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+  gateway7:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+  gateway8:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+  gateway9:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+  gateway10:
+    build: .
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=8000
+    depends_on:
+      - redis
+
+volumes:
+  redis_data:
+

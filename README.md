@@ -554,19 +554,22 @@ timeline
         Session Management : Distributed storage
         Horizontal Scaling : Sticky sessions
         User Lifecycle : Register/login/logout
+
     section Phase 2 - Complete (Redis Optimized)
-        Redis Replicas : No more bottlenecks
-        Write Batching : 90% write reduction
-        50k User Benchmarks : Proven scale
+        Dynamic Routing : Hot-reload APIs
+        Admin commands : see / usage.
+        Rate Limiting : Per user/endpoint
     section Phase 3 - In Progress
         SSE Support : Server-sent events
         Redis Cluster : Full HA mode
-        Dynamic Routing : Hot-reload APIs
+        50k User Benchmarks : Proven scale
+       
     section Phase 4 - Planned
         Observability : Prometheus/Grafana
-        Rate Limiting : Per user/endpoint
-        GraphQL : Gateway support
-        API Versioning : Strategy implementation
+        react UI.
+        
+        
+       
 ```
 
 - [x] JWT auth with roles
@@ -582,6 +585,7 @@ timeline
 - [ ] Metrics/Observability
 - [ ] Rate limiting
 - [X] Admin commands
+- [ ] UI - react.
 
 *Explanation:* Phase 2 focused on Redis scaling—replicas + batching make it handle 50k easy. Future: Cluster for 100k+, observability for dashboards.
 

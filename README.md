@@ -578,10 +578,10 @@ timeline
 - [x] 50k-user benchmarks (Redis replicas eliminate bottlenecks)
 - [ ] SSE support
 - [ ] Full Redis Cluster
-- [ ] Dynamic routing
+- [X] Dynamic routing
 - [ ] Metrics/Observability
 - [ ] Rate limiting
-- [ ] GraphQL
+- [X] Admin commands
 
 *Explanation:* Phase 2 focused on Redis scaling—replicas + batching make it handle 50k easy. Future: Cluster for 100k+, observability for dashboards.
 
@@ -673,4 +673,8 @@ WebSocket has ~1.5x higher messaging throughput than HTTP
 
 
 ## 💬 Support
+
+- 📖 [Usage Guide](README/USAGE.md)
+- 🚀 [Getting Started](README/USAGE.md#getting-started)
+- ❓ [FAQ](README/USAGE.md#faq)
 

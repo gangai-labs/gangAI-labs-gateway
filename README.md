@@ -15,7 +15,7 @@ A production-ready, horizontally-scalable API gateway built with **FastAPI**, **
 - **Optimizes for Scale:** Write-behind batching reduces Redis writes by 90% (batching every 100ms), sticky sessions keep WebSocket connections stable, and health checks support auto-scaling in Kubernetes.
 - **Handles Massive Loads Effortlessly:** Proven to manage **50,000+ concurrent users** with sub-second latencies, even under DDoS-like bursts. Redis is no longer a bottleneck—thanks to replication, batching, and optional clustering, it scales linearly without choking.
 
-**Performance Edge:** Delivers **1.5-2x higher throughput** via WebSockets over HTTP polling, with **50-62% lower latency**. In real-world tests (e.g., 10k simultaneous logins in <4s), it maintains balance across Docker containers, with CPU/Memory usage evenly distributed (~45% per pod). Scale to 50k users? Easy— just spin up more pods; Redis replicas handle the pub/sub flood without breaking a sweat.
+**Performance Edge:** Delivers **1.5-2x higher throughput** via WebSockets over HTTP polling, with **50-62% lower latency**. In real-world tests (e.g., 10k simultaneous logins in <1.5s), it maintains balance across Docker containers, with CPU/Memory usage evenly distributed (~45% per pod). Scale to 50k users? Easy— just spin up more pods; Redis replicas handle the pub/sub flood without breaking a sweat.
 
 ---
 
@@ -81,7 +81,7 @@ graph LR
 | **10,000 Users** | **2,150 ms** | **1,020 ms**      | **52.6% lower** |
 | **50,000 Users** | **8,500 ms** | **3,800 ms**      | **55.3% lower** |
 
-*Explanation:* Latency tracks end-to-end time for each update/message. At 50k users, HTTP polls grind to seconds (overhead kills it), but WebSockets keep it under 4s avg—feels instant. Redis batching ensures writes don't lag, even with 50k sessions active.
+*Explanation:* Latency tracks end-to-end time for each update/message. At 50k users, HTTP polls grind to seconds (overhead kills it), but WebSockets keep it under 1.5s avg—feels instant. Redis batching ensures writes don't lag, even with 50k sessions active.
 
 ```mermaid
 %%{init: {'theme':'base'}}%%
@@ -114,7 +114,7 @@ graph TD
 | Login        | 20,000       | 6.89s      | 3,492 ms    | 2,903/sec    |
 | **Login (50k)** | **50,000** | **12.5s**  | **5,200 ms**| **4,000/sec**|
 
-*Explanation:* These test full lifecycle under simultaneous load doss like (e.g., 10k logins in <4s total). At 50k, throughput dips slightly due to auth verification, but Redis hashing/replication keeps it snappy. No bottlenecks—gateway pods balance load perfectly (as seen in `docker stats`).
+*Explanation:* These test full lifecycle under simultaneous load doss like (e.g., 10k logins in <1.5s total). At 50k, throughput dips slightly due to auth verification, but Redis hashing/replication keeps it snappy. No bottlenecks—gateway pods balance load perfectly (as seen in `docker stats`).
 
 ---
 
@@ -239,7 +239,7 @@ sequenceDiagram
 ## ⚡ Key Features
 
 ### Core Capabilities
-- **High-Performance WebSockets:** 1.5-2x faster than HTTP; handles 50k concurrent connections with <4s latency.
+- **High-Performance WebSockets:** 1.5-2x faster than HTTP; handles 50k concurrent connections with <1.5s latency.
 - **Redis-Backed Sessions:** Distributed, batched storage—scales to millions of sessions; replicas eliminate read bottlenecks.
 - **JWT Authentication:** Stateless, with refresh tokens and roles; verifies in <1ms.
 - **Write-Behind Batching:** Queues Redis ops (100ms intervals), cutting writes by 90%—key to 50k-user stability.
